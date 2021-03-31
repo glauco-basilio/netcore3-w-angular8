@@ -1,7 +1,51 @@
-<h1>Counter</h1>
+<div class="row">
+  <div class="col-md-8">
+      <div class="row ">
+        <div class="col-md-8">
+          <label for="nomeDoProduto" class="form-label">Nome do Produto</label>
+          <input type="text" class="form-control" name="nome" id="nome" 
+                 [(ngModel)]="model.nome" required>
+        </div>
+        <div class="col-md-4">
+          <label for="valorVenda" class="form-label">Valor</label>
+          <input type="number" class="form-control" id="valorVenda" name="valorVenda" 
+                 [(ngModel)]="model.valorVenda"  required>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-md-8">
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Foto do produto</label>
+            <input type="file" accept=".png" class="form-control-file" id="exampleFormControlFile1">
+          </div>
+        </div>
+        <div class="col-md-4 text-right">
+            <button type="button" (click)="salvar()" class="btn btn-primary align-bottom mt-4">Salvar</button>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-sm">
+          <div class="alert alert-success alert-dismissible fade show" [hidden]="!exibeSucesso" role="alert">
+            Salvo com sucesso.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="alert alert-danger alert-dismissible fade show" [hidden]="!exibeErro" role="alert">
+            Ocorreu um erro. Tente novamente em breve ou contate o nosso suporte.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+  <div class="col-md-4 px-5">
+    <img  [src]="imagemUrl"
+         class="img-fluid rounded" >
+  </div>
 
-<p>This is a simple example of an Angular component.</p>
+</div>
 
-<p aria-live="polite">Current count: <strong>{{ currentCount }}</strong></p>
 
-<button class="btn btn-primary" (click)="incrementCounter()">Increment</button>
