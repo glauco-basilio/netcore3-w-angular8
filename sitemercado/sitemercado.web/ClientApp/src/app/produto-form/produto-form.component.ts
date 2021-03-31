@@ -14,6 +14,8 @@ export class ProdutoFormComponent implements OnInit {
   model: Produto = {}
   exibeErro: boolean = false
   exibeSucesso: boolean = false
+  nomeInvalido: boolean = false
+  valorVendaInvalido: boolean = false
 
   constructor(
     private route: ActivatedRoute,
@@ -36,15 +38,32 @@ export class ProdutoFormComponent implements OnInit {
       }, error => console.error(error));
   }
 
+  oFormEValido(): boolean
+  {
+    this.nomeInvalido = false
+    this.valorVendaInvalido = false
+    if (!this.model.nome)
+    {
+      this.nomeInvalido = true
+    }
+    if ((!this.model.valorVenda) || this.model.valorVenda <= 0)
+    {
+      this.valorVendaInvalido = true
+    }
+    return !(this.valorVendaInvalido || this.nomeInvalido)
+  }
+
   salvar() {
-    this.http.post<Produto>(this.baseUrl + 'api/produto', this.model)
-      .subscribe(result => {
-        this.model.produtoID = Number(result);
-        this.salvoComSucesso();
-      }, error => {
-        console.error(error)
+    if (this.oFormEValido()) {
+      this.http.post<Produto>(this.baseUrl + 'api/produto', this.model)
+        .subscribe(result => {
+          this.model.produtoID = Number(result);
+          this.salvoComSucesso();
+        }, error => {
+          console.error(error)
           this.erroAoSalvar();
-      });
+        });
+    }
   }
 
   salvoComSucesso()

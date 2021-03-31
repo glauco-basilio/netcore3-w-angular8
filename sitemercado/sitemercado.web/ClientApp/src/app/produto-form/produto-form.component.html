@@ -1,15 +1,24 @@
-<div class="row">
+<div class="row form">
   <div class="col-md-8">
       <div class="row ">
         <div class="col-md-8">
           <label for="nomeDoProduto" class="form-label">Nome do Produto</label>
-          <input type="text" class="form-control" name="nome" id="nome" 
+          <input  type="text" [ngClass]="{'form-control': true, 'is-invalid': nomeInvalido}"
+                 name="nome" id="nome" 
                  [(ngModel)]="model.nome" required>
+          <div class="invalid-feedback">
+            Informe um nome
+          </div>
         </div>
         <div class="col-md-4">
           <label for="valorVenda" class="form-label">Valor</label>
-          <input type="number" class="form-control" id="valorVenda" name="valorVenda" 
+          <input type="number"
+                 [ngClass]="{'form-control': true, 'is-invalid': valorVendaInvalido}"
+                 id="valorVenda" name="valorVenda" 
                  [(ngModel)]="model.valorVenda"  required>
+            <div class="invalid-feedback">
+              Informe um valor
+            </div>
         </div>
       </div>
       <div class="row ">

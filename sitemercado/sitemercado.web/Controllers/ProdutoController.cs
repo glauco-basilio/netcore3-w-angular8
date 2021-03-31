@@ -47,6 +47,7 @@ namespace sitemercado.web.Controllers
                 _dbContext.Produtos.Remove(
                     _dbContext.Produtos.Single(x=>x.ProdutoID == id)
                 );
+            _dbContext.SaveChanges();
         }
 
 
