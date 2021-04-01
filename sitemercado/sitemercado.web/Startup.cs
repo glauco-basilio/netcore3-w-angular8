@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -48,6 +49,12 @@ namespace sitemercado.web
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+
+            services.Configure<FormOptions>(o => {
+                 o.ValueLengthLimit = int.MaxValue;
+                 o.MultipartBodyLengthLimit = int.MaxValue;
+                 o.MemoryBufferThreshold = int.MaxValue;
+             });
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
